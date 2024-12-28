@@ -29,10 +29,10 @@ describe('Saucedemo Test',function(){
         assert.strictEqual(title, 'Products', 'Expected dashboard title to be Products');
     });
 
-    it('masukkin barang', async function () {
+    it('masukkin barang Sauce Labs Backpack', async function () {
         const cartPage = new CartPage(driver);
-        const title = await cartPage.cart();
-        assert.strictEqual(title, 'Your Cart', 'Expected Cart title to be Your Cart');
+        const nama = await cartPage.cart();
+        assert.strictEqual(nama, 'Sauce Labs Backpack', 'Expected Cart item is Sauce Labs Backpack');
     });
 
     afterEach(async function () {

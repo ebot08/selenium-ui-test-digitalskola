@@ -8,12 +8,12 @@ class CartPage{
         this.clickcart = By.id('shopping_cart_container');
     }
 
-    async cart(usernameinput,password){
+    async cart(){
         await this.driver.findElement(this.addtoCart).click();
         await takeScreenshot(this.driver, 'CartPage_Addcart');
         await this.driver.findElement(this.clickcart).click();
-        const carttitle = await this.driver.findElement(By.className('title'));
-        return carttitle.getText();
+        const namacart = await this.driver.findElement(By.xpath("//div[@class='inventory_item_name']"));
+        return namacart.getText();
         await takeScreenshot(this.driver, 'CartPage_Addcart');
         return title.getText();
     }
