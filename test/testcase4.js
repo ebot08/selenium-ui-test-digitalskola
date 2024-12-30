@@ -1,6 +1,7 @@
 const { Builder } = require('selenium-webdriver');
 const LoginPage = require('../webcomponent/LoginPage');
-const DashboardPage = require('../webcomponent/DashboardPage');
+const CartPage = require('../webcomponent/CartPage.js');
+const Checkout = require('../webcomponent/Checkout.js')
 const assert = require('assert');
 const { takeScreenshot } = require('../ss');
 require('dotenv').config();
@@ -10,7 +11,7 @@ const baseUrl = process.env.BASE_URL;
 const username = process.env.USER_NAME;
 const password = process.env.PASSWORD;
 
-describe('testcase1 [login] #regression #smoke',function(){
+describe('testcase4 [Checkout] #regression #smoke',function(){
     this.timeout(40000);
     let driver;
 
@@ -45,16 +46,17 @@ describe('testcase1 [login] #regression #smoke',function(){
         await loginPage.login(username,password);
     });
 
-    it('should login successfully and verify dashboard', async function () {
-        const dashboardPage = new DashboardPage(driver);
-        const title = await dashboardPage.Dashboard();
-        assert.strictEqual(title, 'Products', 'Expected dashboard title to be Products');
+    it('checkout', async function () {
+        const checkoutPage = new Checkout(driver);
+        await checkoutPage.navigate();
+        await checkoutPage.credential('Haha','Hihi','1234');
     });
 
     afterEach(async function () {
-        await takeScreenshot(driver, `1 Dashboard${this.currentTest.title}`);
+        await takeScreenshot(driver, `4 Checkout${this.currentTest.title}`);
     });
     
+
     after(async function () {
         await driver.quit();
     });

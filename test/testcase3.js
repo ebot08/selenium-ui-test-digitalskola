@@ -1,6 +1,6 @@
 const { Builder } = require('selenium-webdriver');
 const LoginPage = require('../webcomponent/LoginPage');
-const DashboardPage = require('../webcomponent/DashboardPage');
+const CartPage = require('../webcomponent/CartPage.js');
 const assert = require('assert');
 const { takeScreenshot } = require('../ss');
 require('dotenv').config();
@@ -10,7 +10,7 @@ const baseUrl = process.env.BASE_URL;
 const username = process.env.USER_NAME;
 const password = process.env.PASSWORD;
 
-describe('testcase1 [login] #regression #smoke',function(){
+describe('testcase3 [Add Item] #regression #smoke',function(){
     this.timeout(40000);
     let driver;
 
@@ -45,16 +45,17 @@ describe('testcase1 [login] #regression #smoke',function(){
         await loginPage.login(username,password);
     });
 
-    it('should login successfully and verify dashboard', async function () {
-        const dashboardPage = new DashboardPage(driver);
-        const title = await dashboardPage.Dashboard();
-        assert.strictEqual(title, 'Products', 'Expected dashboard title to be Products');
+    it('masukkin barang Sauce Labs Backpack', async function () {
+        const cartPage = new CartPage(driver);
+        const nama = await cartPage.cart();
+        assert.strictEqual(nama, 'Sauce Labs Backpack', 'Expected Cart item is Sauce Labs Backpack');
     });
 
     afterEach(async function () {
-        await takeScreenshot(driver, `1 Dashboard${this.currentTest.title}`);
+        await takeScreenshot(driver, `3 Add Item${this.currentTest.title}`);
     });
     
+
     after(async function () {
         await driver.quit();
     });

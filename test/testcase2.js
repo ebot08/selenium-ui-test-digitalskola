@@ -29,7 +29,7 @@ describe('testcase2 [login]',function(){
     });
 
     afterEach(async function () {
-        await takeScreenshot(driver, `AfterTest_${this.currentTest.title}`);
+        await takeScreenshot(driver, `2 Login salah username atau password${this.currentTest.title}`);
     });
     
     after(async function () {
